@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "b581e1b1-2cc3-42ad-9f9e-352072a8880a",
+		"name": "rest_cmd_server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all jobs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/job/status?from=<from date>&to=<to date>",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"job",
+						"status"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "<from date>"
+						},
+						{
+							"key": "to",
+							"value": "<to date>"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get active jobs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/job/active",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"job",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get job by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/job/8888/status",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"job",
+						"8888",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancel job (by id)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/job/8888/cancel",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"job",
+						"8888",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put job (sleep_linux)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jobId\": \"5678\",\n    \"jobName\": \"SleepLinux\",\n    \"command\": \"sleep_5s_linux\",\n    \"parameters\": []\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/job/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put job (sleep_linux) - errors",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jobId\": \"5678\",\n    \"jobName\": \"SleepLinux\",\n    \"command\": \"sleep_5s_linux\",\n    \"parameters\": []\n}"
+				},
+				"url": {
+					"raw": "10.22.253.225:8080/job/8888",
+					"host": [
+						"10",
+						"22",
+						"253",
+						"225"
+					],
+					"port": "8080",
+					"path": [
+						"job",
+						"8888"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post job (sleep_linux)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jobName\": \"SleepLinux\",\n    \"command\": \"sleep_5s_linux\",\n    \"parameters\": []\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/job",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post job (ffmpeg framecount)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jobName\": \"framecount\",\n    \"command\": \"ffmpeg_linux\",\n    \"parameters\": [\n    \t\"-y\",\n    \t\"-v\", \"panic\", \"-stats\",\n    \t\"-i\", \"/mnt/c/source/TerminatorGenisys_small.mxf\",\n    \t\"-map\", \"0:v:0\", \"-c\", \"copy\", \"-f\", \"null\", \"-y\", \"-\"\n    ]\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/job",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post job (ffmpeg transcode)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jobName\": \"transcode\",\n    \"command\": \"ffmpeg_linux\",\n    \"parameters\": [\n    \t\"-y\",\n    \t\"-v\", \"info\", \"-progress\", \"pipe:1\",\n    \t\"-i\", \"/mnt/c/source/TerminatorGenisys_small.mxf\",\n    \t\"-vcodec\", \"libx264\",\n    \t\"/mnt/y/src/rest_cmd_server/TerminatorGenisys_small.mp4\"\n    ]\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/job/8888",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"job",
+						"8888"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ef9ec687-9f0e-47fb-817c-a460325f0c9a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "081f126f-9098-42ae-9a9a-3bded2ecc74c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
